@@ -1,0 +1,190 @@
+syntax = "proto3";
+
+package Protocol;
+import "google/protobuf/timestamp.proto";
+option csharp_namespace = "Google.Protobuf.Protocol";
+
+enum MsgId {
+  S_CONNECT = 0;
+  C_ROOM_INFO = 1;
+  S_ROOM_INFO = 2;
+  C_JOIN_GAME_ROOM = 3;
+  S_JOIN_GAME_ROOM = 4;
+  S_LEAVE_GAME_ROOM = 5;
+  S_SPAWN = 6;
+  S_DESPAWN = 7;
+  C_START_GAME = 8;
+  S_START_GAME = 9;
+  C_SHOOT = 10;
+  S_SHOOT = 11;
+  C_MOVE = 12;
+  S_MOVE = 13;
+  C_NEXT_COLS_BUBBLE = 14;
+  S_NEXT_COLS_BUBBLE = 15;
+  S_NEXT_COLS_BUBBLE_PEER = 16;
+  C_NEXT_COLS_BUBBLE_LIST = 17;
+  S_NEXT_COLS_BUBBLE_LIST = 18;
+  C_NEXT_BUBBLES = 19;
+  S_NEXT_BUBBLES = 20;
+  S_NEXT_BUBBLES_PEER = 21;
+  C_FIXED_BUBBLE_SLOT = 22;
+  S_FIXED_BUBBLE_SLOT_PEER = 23;
+  C_PLAYER_GAME_OVER = 24;
+  S_PLAYER_GAME_OVER_BROAD_CAST = 25;
+  S_GAME_RESULT = 26;
+}
+
+enum PacketState { 
+  NONE = 0;
+  SENDED = 1;
+  RECVED = 2;
+}
+
+enum GameRoomState { 
+  LOBBY = 0;
+  GAME = 1;
+  GAME_RESULT = 2;
+}
+
+message S_Connect {
+  PlayerInfo player = 1;
+}
+
+message C_RoomInfo {
+  int32 roomId = 1;
+}
+
+message S_RoomInfo {
+  RoomInfo roomInfo = 1;
+}
+
+message C_JoinGameRoom {
+  PlayerInfo player = 1;
+}
+
+message S_JoinGameRoom {
+  RoomInfo roomInfo = 1;
+}
+
+message S_LeaveGameRoom {
+}
+
+message S_Spawn {
+  int32 roomId = 1;
+  repeated PlayerInfo players = 2;
+}
+
+message S_Despawn {
+  int32 roomId = 1;
+  repeated int32 playerIds = 2;
+}
+
+message C_StartGame {
+  int32 roomId = 1;
+}
+
+message S_StartGame {
+  int32 roomId = 1;
+}
+
+message C_Shoot {
+  float radianAngle = 1;
+}
+
+message S_Shoot {
+  int32 playerId = 1;
+  float radianAngle = 2;
+}
+
+message C_Move {
+  float posX = 1;
+  float posY = 2;
+}
+
+message S_Move {
+  int32 playerId = 1;
+  float posX = 2;
+  float posY = 3;
+}
+
+
+message C_NextBubbles {
+  int32 reqCount = 1;
+}
+
+message S_NextBubbles {
+  repeated int32 bubbleTypes = 1;
+}
+
+message S_NextBubblesPeer {
+  int32 playerId = 1;
+  repeated int32 bubbleTypes = 2;
+}
+
+message C_NextColsBubble {
+   
+}
+
+message S_NextColsBubble {
+  repeated int32 bubbleTypes = 1;
+}
+
+message S_NextColsBubblePeer {
+  int32 playerId = 1;
+  repeated int32 bubbleTypes = 2;
+}
+
+message C_NextColsBubbleList {
+  int32 colsCount = 1;
+}
+
+message S_NextColsBubbleList {
+  repeated ColsBubbles ColsBubbles = 1;
+}
+
+message C_FixedBubbleSlot {
+  int32 colsSlotId = 1;
+  int32 slotId = 2;
+}
+
+message S_FixedBubbleSlotPeer {
+  int32 playerId = 1;
+  int32 colsSlotId = 2;
+  int32 slotId = 3;
+}
+
+message C_PlayerGameOver {
+  
+}
+
+message S_PlayerGameOverBroadCast {
+  PlayerRank playerRank = 1;
+}
+
+message S_GameResult {
+  repeated PlayerRank playerRanks = 1;
+}
+
+message ColsBubbles {
+  repeated int32 bubbleTypes = 1;
+}
+
+message PlayerRank {
+  int32 playerId = 1;
+  int32 rank = 2;
+  bool  disConnected = 3;
+}
+
+message PlayerInfo {
+  int32 playerId = 1;
+  string name = 2;
+  int32 posX = 3;   
+  int32 posY = 4;
+}
+
+message RoomInfo {
+  int32 roomId = 1;
+  repeated PlayerInfo players = 2;
+}
+
+

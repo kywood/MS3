@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public GameObject BubbleManager;
     public GameObject Walls;
     public GameObject WallMaskArea;
+    public GameObject SpriteMaskArea;
     public GameObject BubblePool;
 
     public GameObject RotSlot;

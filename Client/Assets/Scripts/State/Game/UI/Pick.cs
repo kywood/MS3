@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Defines;
 
 public class Pick : MonoBehaviour
 {
@@ -22,6 +23,56 @@ public class Pick : MonoBehaviour
     {
         HitMark.transform.localScale = new Vector3(diameter, diameter, 1);
     }
+
+    eDir GetXDir(float x1, float x2)
+    {
+        int compare = x1.CompareTo(x2);
+
+        if (compare == 1)
+        {
+            return eDir.Left;
+        }
+        else if (compare == -1)
+        {
+            return eDir.Right;
+        }
+        else
+        {
+            return eDir.None;
+        }
+        return eDir.None;
+    }
+
+    public void RePlaceLimitPosition(ref Vector3 vPos)
+    {
+        Vector2 vStart = CMath.ConvertV3toV2(ShootBody.transform.position);
+        Vector2 vEnd = CMath.ConvertV3toV2(vPos);
+
+        float fDistance = Util.Distance(vStart, vEnd);
+        float fAngle = CMath.GetAngle(vStart, vEnd);
+
+        float LimitAngle = 0.0f;
+
+        if (fAngle > Defines.G_SHOOT_LIMIT_ANGLE && fAngle < 180.0f - Defines.G_SHOOT_LIMIT_ANGLE)
+        {
+        }
+        else
+        {
+            eDir xDir = GetXDir(ShootBody.transform.position.x, vPos.x);
+
+            if (xDir == eDir.Left)
+            {
+                LimitAngle = 180.0f - Defines.G_SHOOT_LIMIT_ANGLE;
+            }
+            else
+            {
+                LimitAngle = Defines.G_SHOOT_LIMIT_ANGLE;
+            }
+            float RadianValue = LimitAngle * Mathf.Deg2Rad;
+            vPos = new Vector3(Mathf.Cos(RadianValue), Mathf.Sin(RadianValue), 0.0f) * fDistance + transform.position;
+        }
+    }
+
 
     void LateUpdate()
     {
@@ -60,6 +111,16 @@ public class Pick : MonoBehaviour
         float radius = Player.Diameter;
 
         //Player.Diameter
+
+        //Physics2D.RaycastAll()
+
+        ////Physics2D.Cast
+        //RaycastHit hit;
+
+        //if( Physics.SphereCast(transform.position, radius, Dir, out hit, Mathf.Infinity, layerMask) )
+        //{
+        //    Debug.Log("Hit Test Success!!");
+        //}
 
         RaycastHit2D hit2d = Physics2D.CircleCast(vShootBodyPos, radius, Dir , Mathf.Infinity , layerMask);
 

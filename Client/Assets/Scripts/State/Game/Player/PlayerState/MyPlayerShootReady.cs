@@ -50,6 +50,55 @@ public class MyPlayerShootReady : PlayerShootReady
         //Debug.Log("Shoot f : " + fAngle + " R : " + fAngle * Mathf.Deg2Rad);
     }
 
+    bool HitChecker(out Vector3 HitPoint)
+    {
+        HitPoint = new Vector3();
+
+
+        Vector2 wp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        Ray2D ray = new Ray2D(wp, Vector2.zero);
+
+        RaycastHit2D[] hits = Physics2D.RaycastAll(ray.origin, ray.direction);
+
+        foreach(RaycastHit2D hit in hits)
+        {
+            if (hit.collider.name.Equals("GameArea"))
+            {
+                HitPoint = hit.point;
+                return true;
+            }
+        }
+
+        //if(hit.collider != null)
+        //{
+        //    if (hit.collider.name.Equals("GameArea"))
+        //    {
+        //        HitPoint = hit.point;
+        //        return true;
+        //    }
+        //}
+
+        
+
+
+
+        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+
+        //RaycastHit[] Hits = Physics.RaycastAll(ray, Mathf.Infinity);
+        //for (int i = 0; i < Hits.Length; i++)
+        //{
+        //    if (Hits[i].collider.name.Equals("GameArea"))
+        //    {
+        //        HitPoint = Hits[i].point;
+        //        Debug.Log("In Aera");
+        //        return true;
+        //    }
+        //}
+        return false;
+    }
+   
 
     public override void OnUpdate()
     {
@@ -58,11 +107,33 @@ public class MyPlayerShootReady : PlayerShootReady
 
         if (Input.GetMouseButton(0))
         {
+
+            Vector3 curPosition;
+            if (HitChecker(out curPosition))
+            {
+                bMousePress = true;
+            }
+            else
+            {
+                //Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+                return;
+            }
+
             bMousePress = true;
 
-            Vector3 wPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            wPos.z = 0;
-            Target.transform.position = wPos;
+
+            curPosition.z = 0.0f;
+
+            Pick pick = Player.Pick.GetComponent<Pick>();
+            pick.RePlaceLimitPosition(ref curPosition);
+            Target.transform.position = curPosition;
+            //Target.transform.localPosition = curPosition;
+
+            //bMousePress = true;
+
+            //Vector3 wPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //wPos.z = 0;
+            //Target.transform.position = wPos;
 
             //float dis = Util.Distance(Target.transform.position, ShootBody.transform.position);
             //float angle = CMath.GetAngle(Target.transform.position, ShootBody.transform.position);

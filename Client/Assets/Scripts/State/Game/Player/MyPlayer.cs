@@ -5,8 +5,9 @@ using static PlayerManager;
 
 public class MyPlayer : OnlinePlayer
 {
-
     public GameObject Next;
+
+    public GameObject GameArea;
 
 
 

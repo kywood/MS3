@@ -272,8 +272,17 @@ public class CSRotSlot : MonoBehaviour
         walls.WL.transform.localPosition = new Vector3(firstX - (walls.WL.GetComponent<BoxCollider2D>().size.x / 2), walls.WL.transform.localPosition.y, 0);
         walls.WR.transform.localPosition = new Vector3(firstEndX + (walls.WR.GetComponent<BoxCollider2D>().size.x / 2), walls.WR.transform.localPosition.y, 0);
 
-
         Player.BG.transform.position = Player.WallMaskArea.GetComponent<MaskArea>().AdJustMaskArea();
+
+        if(Player.SpriteMaskArea!=null)
+            Player.SpriteMaskArea.GetComponent<SpriteMasking>().AdJustMaskArea();
+
+        if( Player.PlayerType == E_PLAYER_TYPE.MY_PLAYER )
+        {
+            ((MyPlayer)Player).GameArea.GetComponent<GameArea>().AdJustArea();
+        }
+
+        //if(Player)
 
     }
 

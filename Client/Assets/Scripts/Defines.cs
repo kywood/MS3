@@ -25,6 +25,15 @@ public class Defines
         GAME ,
         MAX
     }
+    public enum eDir
+    {
+        None = -1,
+        Left,
+        Right,
+        Top,
+        Bottom,
+        MAX
+    }
 
     private static Dictionary<E_SCENES, String> mScenesNms = new Dictionary<E_SCENES, string>()
         {
@@ -56,6 +65,9 @@ public class Defines
     public const float G_BUBBLE_RIGIDBODY_FORCE = 0.025f;
     public const float G_SHOOT_FORCE = 15.0f;
 
+    public const float G_SHOOT_LIMIT_ANGLE = 5.0f;
+
+
 
     public const string SERVER_IPADDR = "192.168.123.107";
     public const int    SERVER_PORT = 7779;
@@ -69,6 +81,8 @@ public class Defines
     public const int G_BUBBLE_START_ROW_COUNT = 5;
 
     public const int G_DROP_LOOP_TICK = 5;
+
+    
 
 
     public const float G_BUBBLE_DIAMETER = 0.40f;

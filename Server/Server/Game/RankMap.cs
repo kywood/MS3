@@ -109,10 +109,17 @@ namespace Server.Game
 
                 //AddRanker(findGp);
 
-                _gamePlayers.Find((gp) =>
-                    //gp.PlayerState == eGamePlayerState.None
-                //gp.PlayerState == eGamePlayerState.None ? true : false
-                );
+                //_gamePlayers.Find((gp) =>
+                //{
+                //    int a = 10;
+                //    if (a == 10)
+                //        return true;
+                //    else
+                //        return false;
+                //}
+                //    //gp.PlayerState == eGamePlayerState.None
+                ////gp.PlayerState == eGamePlayerState.None ? true : false
+                //);
 
                 GamePlayer p = _gamePlayers.Find(gamePlayer => gamePlayer.PlayerState == eGamePlayerState.None);
                 AddRanker(p);

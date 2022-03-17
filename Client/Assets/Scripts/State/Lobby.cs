@@ -94,6 +94,11 @@ public class Lobby : MonoBehaviour , IObserver
         }
     }
 
+    public void OnClickTest()
+    {
+        Debug.Log("OnClickTest");
+    }
+
     public void OnBtnClick_GameRoomEnter()
     {
         //내가 이미 입장중이라면 안되고..

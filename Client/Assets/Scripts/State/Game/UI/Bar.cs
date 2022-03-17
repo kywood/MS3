@@ -7,6 +7,9 @@ public class Bar : MonoBehaviour
 {
     // Start is called before the first frame update
 
+
+    public float RotSpeed = 0.2f;
+
     RawImage texture;
 
     void Start()
@@ -19,7 +22,7 @@ public class Bar : MonoBehaviour
     void Update()
     {
         Rect currentUV = texture.uvRect;
-        currentUV.x -= Time.deltaTime * 0.2f;
+        currentUV.x -= Time.deltaTime * RotSpeed;
 
         if (currentUV.x <= -1f || currentUV.x >= 1)
         {

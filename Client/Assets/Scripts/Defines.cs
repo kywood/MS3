@@ -41,7 +41,7 @@ public class Defines
             { E_SCENES.TITLE , "TITLE" },
             { E_SCENES.MENU , "MENU" },
             { E_SCENES.LOBBY , "LOBBY" },
-            { E_SCENES.GAME , "GAME" },
+            { E_SCENES.GAME , "GAME_5" },
         };
 
     public static String GetScenesName(E_SCENES scene)
@@ -69,7 +69,7 @@ public class Defines
 
 
 
-    public const string SERVER_IPADDR = "192.168.123.107";
+    public const string SERVER_IPADDR = "192.168.123.109";
     public const int    SERVER_PORT = 7779;
     
 

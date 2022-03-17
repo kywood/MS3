@@ -201,9 +201,15 @@ public class CSRotSlot : MonoBehaviour
 
 
         startY = bottomObject.transform.localPosition.y + (bottomObject.GetComponent<BoxCollider2D>().size.y / 2) +
-            ( _bubbleDiameter * 1.2f) + (_bubbleDiameter * (bs.GetColsSlotCount() - 1));
+            (_bubbleDiameter * 1f) + (_bubbleDiameter * (bs.GetColsSlotCount() - 1));
+
+        //startY = bottomObject.transform.localPosition.y - (bottomObject.GetComponent<BoxCollider2D>().size.y / 2) +
+        //    (_bubbleDiameter * 1f) + (_bubbleDiameter * (bs.GetColsSlotCount() - 1));
+
 
         float topObjectY = startY + (topObject.GetComponent<BoxCollider2D>().size.y / 2) + bubbleRadius;
+
+        //float topObjectY = startY;
 
         topObject.transform.localPosition = new Vector3(topObject.transform.localPosition.x,
             topObjectY,

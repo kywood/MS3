@@ -50,6 +50,14 @@ namespace Server.Game
 
                 int rankValue = 1;
 
+                //for(int i = 0; i < finalRanker.Count; i++ )
+                //{
+                //    finalRanker[i].Rank = rankValue++;
+
+                //    if (finalRanker[i].PlayerState == eGamePlayerState.Disconnected)
+                //        finalRanker[i].Rank = 0;
+                //}
+
                 //foreach(GamePlayer gp in finalRanker)
                 //{
                 //    gp.Rank = rankValue++;
@@ -107,18 +115,13 @@ namespace Server.Game
                 //    }
                 //}
 
-                //AddRanker(findGp);
-
                 //_gamePlayers.Find((gp) =>
-                //{
-                //    int a = 10;
-                //    if (a == 10)
-                //        return true;
-                //    else
-                //        return false;
-                //}
-                //    //gp.PlayerState == eGamePlayerState.None
-                ////gp.PlayerState == eGamePlayerState.None ? true : false
+                //    {
+                //        if( gp.PlayerState == eGamePlayerState.Ranker )
+                //            return true;
+                //        else
+                //            return false;
+                //    }
                 //);
 
                 GamePlayer p = _gamePlayers.Find(gamePlayer => gamePlayer.PlayerState == eGamePlayerState.None);

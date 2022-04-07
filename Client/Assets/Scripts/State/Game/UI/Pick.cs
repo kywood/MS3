@@ -69,7 +69,11 @@ public class Pick : MonoBehaviour
                 LimitAngle = Defines.G_SHOOT_LIMIT_ANGLE;
             }
             float RadianValue = LimitAngle * Mathf.Deg2Rad;
-            vPos = new Vector3(Mathf.Cos(RadianValue), Mathf.Sin(RadianValue), 0.0f) * fDistance + transform.position;
+            
+            //vPos = new Vector3(Mathf.Cos(RadianValue), Mathf.Sin(RadianValue), 0.0f) * fDistance + transform.position;
+
+
+            vPos = new Vector3(Mathf.Cos(RadianValue), Mathf.Sin(RadianValue), 0.0f).normalized * fDistance;
         }
     }
 

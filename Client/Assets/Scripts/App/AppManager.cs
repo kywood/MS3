@@ -18,6 +18,8 @@ public class AppManager : DontDestroy<AppManager>
     {
         base.OnAwake();
         Application.targetFrameRate = 60;
+
+        Screen.SetResolution(Defines.G_SCREEN_WIDTH, Defines.G_SCREEN_HEIGHT, false);
     }
 
     

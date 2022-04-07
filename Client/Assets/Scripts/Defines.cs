@@ -69,7 +69,7 @@ public class Defines
 
 
 
-    public const string SERVER_IPADDR = "192.168.123.109";
+    public const string SERVER_IPADDR = "192.168.123.110";
     public const int    SERVER_PORT = 7779;
     
 
@@ -82,7 +82,8 @@ public class Defines
 
     public const int G_DROP_LOOP_TICK = 5;
 
-    
+    public const int G_SCREEN_WIDTH = 1080;
+    public const int G_SCREEN_HEIGHT = 1920;
 
 
     public const float G_BUBBLE_DIAMETER = 0.40f;

@@ -234,7 +234,7 @@ public class PickTest : MonoBehaviour
 
         int layerMask = 1 << LayerMask.NameToLayer("GAME_RAY");
 
-        float radius = Radius;
+        float radius = Radius;  
 
         RaycastHit2D hit2d = Physics2D.CircleCast(vShootBodyPos, radius, Dir, Mathf.Infinity, layerMask);
 
